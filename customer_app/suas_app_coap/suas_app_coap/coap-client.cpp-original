@@ -51,20 +51,6 @@ coap_response_t message_handler([[gnu::unused]] coap_session_t *session,
                                 [[gnu::unused]] const coap_pdu_t *sent,
                                 const coap_pdu_t *received,
                                 [[gnu::unused]] const coap_mid_t id) {
-// --- [ADD THIS] LOG RESPONSE CODE ---
-  // Extract code: Class (e.g. 2 or 5) and Detail (e.g. 05 or 03)
-  int code_class = COAP_RESPONSE_CLASS(received->code);
-  int code_detail = received->code & 0x1F;
-
-  printf("[CLIENT] Response: %d.%02d", code_class, code_detail);
-
-  if (code_class == 5 && code_detail == 3) {
-      printf(" (BLOCKED! Rate Limit Hit)\r\n");
-  } else {
-      printf(" (Success)\r\n");
-  }
-  // ------------------------------------
-
   // 0. Variables
   const uint8_t *data;
   size_t len;
@@ -263,8 +249,7 @@ void task_coap_client([[gnu::unused]] void *pvParameters) {
       coap_io_process(main_coap_context, 500);
     }
     // Wait one second before sending next request
-    //vTaskDelay(pdMS_TO_TICKS(1000));
-    vTaskDelay(pdMS_TO_TICKS(50));
+    vTaskDelay(pdMS_TO_TICKS(1000));
   }
 
   // Destruct CoAP data containers
