@@ -100,7 +100,7 @@ class Application(tk.Tk):
                     # Write output data from self.serialOutputBuffer if present
                     if len(self.serialOutputBuffer) > 0:
                         # Encode into ascii
-                        serialString = self.serialOutputBuffer.encode('utf-8')
+                        line = serial.readline().decode('utf-8', errors='replace')
 
                         # Clear buffer
                         self.serialOutputBuffer = ""
