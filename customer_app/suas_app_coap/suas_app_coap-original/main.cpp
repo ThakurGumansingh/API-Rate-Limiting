@@ -16,13 +16,6 @@ extern "C" {
 
 /* Main function, system starts here */
 extern "C" void bfl_main(void) {
-
-uint32_t i;
-    for (i = 0; i < 20000000; i++) {
-        __asm__ __volatile__("nop");
-    }
-//over
-
   /* Define containers for WiFi task */
   constexpr uint16_t WIFI_STACK_SIZE = 512;
   constinit static StackType_t wifi_stack[WIFI_STACK_SIZE]{};

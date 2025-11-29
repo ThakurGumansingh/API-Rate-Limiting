@@ -3,8 +3,8 @@
 
 // Credentials
 // Do not hardcode credentials in production code
-#define WIFI_SSID "guman"
-#define WIFI_PW "guman123"
+#define WIFI_SSID "YOUR_SSID"
+#define WIFI_PW "YOUR_PASSWORD"
 
 // Wifi modes
 enum app_wifi_role { UNINITIALIZED = 0, AP, STA };
